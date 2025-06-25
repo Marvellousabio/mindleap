@@ -1,8 +1,7 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import thumbnail from '../assets/thumbnail.png'
 import {IoArrowForwardCircleSharp} from 'react-icons/io5'
 import {IoPlay} from 'react-icons/io5';
-import {motion } from 'framer-motion';
 import {fadeIn} from '../utils/animation'
 
 const About = () => {
@@ -10,9 +9,12 @@ const About = () => {
   const handleVideoPlay=()=>(
     setIsVideoPlaying(true)
   )
-  const handleCloseVideo=()=>(
+  const handleCloseVideo=()=>
     setIsVideoPlaying(false)
-  )
+  useEffect(()=>{
+    document.body.style.overflow=isVideoPlaying? 'hidden':'auto';
+  },[isVideoPlaying])
+  const apiUrl = import.meta.env.VITE_VIDEOLINK;
   return (
     <div id='about' className='bg-[#f7f8fc] pb-16 pt-20'>
     <motion.div 
@@ -53,20 +55,22 @@ const About = () => {
     </motion.div>
     {
       isVideoPlaying &&(
-        <div className='fixed insert-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
-          <div className='relative w-full h-full flex item-center justify-center'>
-          <iframe
-          width='560'
-          height='315'
-          src='https://www.youtube.com/marvellousogun'
-          title='Youtube Video Player'
-          frameBorder='0'
-          allow='accelerator; autoplay;clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-          allowFullScreen
+        <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50'>
+          <div className='relative w-[90%] max-w-[560px] h-full flex items-center justify-center'>
+          
+          <iframe 
+          width="560"
+           height="315"
+           src={apiUrl} 
+           title="YouTube video player"
+            frameBorder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+             referrerPolicy="strict-origin-when-cross-origin" 
+             allowFullScreen
           className='rounded-lg'
-          >
-          </iframe>
-          <button onClick={handleCloseVideo} className='absolute top-4 right-4 text-white text-2xl cursor-picture'>
+             />
+          
+          <button onClick={handleCloseVideo} className='absolute top-4 right-4 text-white text-2xl cursor-pointer'>
             x
           </button>
         </div>
