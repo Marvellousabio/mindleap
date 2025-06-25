@@ -17,7 +17,7 @@ export const fadeIn =(direction, delay) =>{
             }
         }
     }
-<<<<<<< HEAD
+
 }
 // Animation variants
 export const linkVariants = {
@@ -42,6 +42,4 @@ export const mobileItemVariants = {
     hidden: { opacity: 0, x: -20 },
     visible: { opacity: 1, x: 0 }
   };
-=======
-}
->>>>>>> 8f1f84e152fe87d81837f4a1f942ebb5c307344b
+
