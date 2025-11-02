@@ -9,7 +9,7 @@ export default defineConfig({
     exclude: ['prop-types'], // helps avoid Windows/prop-types optimizer issue
   },
   build: {
-    minify: false, // optional (can turn true in production)
+    minify: true, // optional (can turn true in production)
     rollupOptions: {
       output: {
         manualChunks: undefined,
